@@ -1,0 +1,83 @@
+{
+  "lastVerified": null,
+  "note": "PLACEHOLDER HOURS — confirm with dining services or CampusDish before submitting (Jira PH-5). Hours subject to change.",
+  "locations": [
+    {
+      "id": "pitts",
+      "name": "Pitts Dining Hall",
+      "kind": "All-you-care-to-eat dining hall",
+      "keywords": ["buffet", "breakfast", "lunch", "dinner", "brunch"],
+      "image": "",
+      "alt": "Pitts Dining Hall serving line",
+      "hours": {
+        "mon": [
+          { "meal": "Breakfast", "open": "07:30", "close": "10:00" },
+          { "meal": "Lunch", "open": "11:00", "close": "14:00" },
+          { "meal": "Dinner", "open": "17:00", "close": "19:30" }
+        ],
+        "tue": [
+          { "meal": "Breakfast", "open": "07:30", "close": "10:00" },
+          { "meal": "Lunch", "open": "11:00", "close": "14:00" },
+          { "meal": "Dinner", "open": "17:00", "close": "19:30" }
+        ],
+        "wed": [
+          { "meal": "Breakfast", "open": "07:30", "close": "10:00" },
+          { "meal": "Lunch", "open": "11:00", "close": "14:00" },
+          { "meal": "Dinner", "open": "17:00", "close": "19:30" }
+        ],
+        "thu": [
+          { "meal": "Breakfast", "open": "07:30", "close": "10:00" },
+          { "meal": "Lunch", "open": "11:00", "close": "14:00" },
+          { "meal": "Dinner", "open": "17:00", "close": "19:30" }
+        ],
+        "fri": [
+          { "meal": "Breakfast", "open": "07:30", "close": "10:00" },
+          { "meal": "Lunch", "open": "11:00", "close": "14:00" },
+          { "meal": "Dinner", "open": "17:00", "close": "19:00" }
+        ],
+        "sat": [
+          { "meal": "Brunch", "open": "11:00", "close": "13:30" },
+          { "meal": "Dinner", "open": "17:00", "close": "18:30" }
+        ],
+        "sun": [
+          { "meal": "Brunch", "open": "11:00", "close": "13:30" },
+          { "meal": "Dinner", "open": "17:00", "close": "18:30" }
+        ]
+      }
+    },
+    {
+      "id": "hill-grill",
+      "name": "The Hill Grill & Bistro",
+      "kind": "Grill · grab-and-go",
+      "keywords": ["burgers", "grill", "sandwiches", "grab-and-go"],
+      "image": "",
+      "alt": "The Hill Grill & Bistro counter",
+      "hours": {
+        "mon": [{ "meal": "Lunch", "open": "11:00", "close": "14:00" }, { "meal": "Dinner", "open": "17:00", "close": "21:00" }],
+        "tue": [{ "meal": "Lunch", "open": "11:00", "close": "14:00" }, { "meal": "Dinner", "open": "17:00", "close": "21:00" }],
+        "wed": [{ "meal": "Lunch", "open": "11:00", "close": "14:00" }, { "meal": "Dinner", "open": "17:00", "close": "21:00" }],
+        "thu": [{ "meal": "Lunch", "open": "11:00", "close": "14:00" }, { "meal": "Dinner", "open": "17:00", "close": "21:00" }],
+        "fri": [{ "meal": "Lunch", "open": "11:00", "close": "14:00" }],
+        "sat": [],
+        "sun": [{ "meal": "Dinner", "open": "17:00", "close": "21:00" }]
+      }
+    },
+    {
+      "id": "starbucks",
+      "name": "Starbucks",
+      "kind": "Coffee · snacks",
+      "keywords": ["coffee", "espresso", "snacks", "tea"],
+      "image": "",
+      "alt": "Starbucks coffee counter on campus",
+      "hours": {
+        "mon": [{ "meal": "Morning", "open": "07:30", "close": "14:00" }, { "meal": "Evening", "open": "19:00", "close": "22:00" }],
+        "tue": [{ "meal": "Morning", "open": "07:30", "close": "14:00" }, { "meal": "Evening", "open": "19:00", "close": "22:00" }],
+        "wed": [{ "meal": "Morning", "open": "07:30", "close": "14:00" }, { "meal": "Evening", "open": "19:00", "close": "22:00" }],
+        "thu": [{ "meal": "Morning", "open": "07:30", "close": "14:00" }, { "meal": "Evening", "open": "19:00", "close": "22:00" }],
+        "fri": [{ "meal": "Morning", "open": "07:30", "close": "14:00" }],
+        "sat": [],
+        "sun": [{ "meal": "Evening", "open": "19:00", "close": "22:00" }]
+      }
+    }
+  ]
+}

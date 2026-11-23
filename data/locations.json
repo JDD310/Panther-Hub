@@ -1,0 +1,97 @@
+{
+  "center": { "lat": 33.04, "lng": -85.03 },
+  "coordinatesVerified": false,
+  "note": "PLACEHOLDER names and coordinates spread around the plan's campus center. Replace each with real buildings and lat/lng from openstreetmap.org (right-click → Show address) per Jira PH-6.",
+  "places": [
+    {
+      "id": "library",
+      "name": "Campus Library",
+      "category": "Study",
+      "lat": 33.0412,
+      "lng": -85.0312,
+      "area": "Library",
+      "description": "Quiet floors, plenty of outlets, printing, and group study rooms you can reserve."
+    },
+    {
+      "id": "pitts",
+      "name": "Pitts Dining Hall",
+      "category": "Dining",
+      "lat": 33.0403,
+      "lng": -85.0296,
+      "area": "Student center area",
+      "description": "Main all-you-care-to-eat dining hall. Breakfast, lunch, and dinner on weekdays; brunch on weekends."
+    },
+    {
+      "id": "hill-grill",
+      "name": "The Hill Grill & Bistro",
+      "category": "Dining",
+      "lat": 33.0398,
+      "lng": -85.0305,
+      "area": "Student center area",
+      "description": "Burgers, sandwiches, and grab-and-go meals. Good for a quick bite between classes."
+    },
+    {
+      "id": "starbucks",
+      "name": "Starbucks",
+      "category": "Dining",
+      "lat": 33.0408,
+      "lng": -85.0302,
+      "area": "Library area",
+      "description": "Coffee and snacks. Busy before 9 AM; quieter in the evening block."
+    },
+    {
+      "id": "academic-1",
+      "name": "Main Academic Building",
+      "category": "Academic",
+      "lat": 33.0418,
+      "lng": -85.0294,
+      "area": "Central quad",
+      "description": "General classrooms and faculty offices. Lounge seating on the first floor."
+    },
+    {
+      "id": "science",
+      "name": "Science Building",
+      "category": "Academic",
+      "lat": 33.0391,
+      "lng": -85.0318,
+      "area": "South campus",
+      "description": "Labs and lecture halls for biology, chemistry, and physics."
+    },
+    {
+      "id": "quad",
+      "name": "Main Quad",
+      "category": "Study",
+      "lat": 33.0410,
+      "lng": -85.0288,
+      "area": "Central quad",
+      "description": "Outdoor benches and shade trees. Good for studying on nice days; no outlets."
+    },
+    {
+      "id": "residence-1",
+      "name": "Residence Hall",
+      "category": "Housing",
+      "lat": 33.0425,
+      "lng": -85.0320,
+      "area": "North campus",
+      "description": "First-year housing with a 24-hour study lounge on the ground floor."
+    },
+    {
+      "id": "athletics",
+      "name": "Athletic Complex",
+      "category": "Athletics",
+      "lat": 33.0378,
+      "lng": -85.0285,
+      "area": "East campus",
+      "description": "Gym, fitness center, and home games. Check posted hours for open gym."
+    },
+    {
+      "id": "lot-west",
+      "name": "Student Parking — West Lot",
+      "category": "Parking",
+      "lat": 33.0400,
+      "lng": -85.0335,
+      "area": "West campus",
+      "description": "Commuter and resident parking. A permit is required on weekdays."
+    }
+  ]
+}
