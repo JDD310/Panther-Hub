@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en" data-bs-theme="light">
+<head>
+  <!-- ===== Page metadata ===== -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Campus Map · Panther Hub</title>
+  <meta name="description" content="Interactive LaGrange College campus map with buildings, dining, and study spots.">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <!-- Leaflet CSS: only this page needs the map library (API #2) -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+  <a class="visually-hidden-focusable skip-link" href="#main">Skip to main content</a>
+
+  <!-- ===== Shared header + navbar ===== -->
+  <header class="site-header border-bottom">
+    <nav class="navbar navbar-expand-md container-xl" aria-label="Main navigation">
+      <a class="navbar-brand d-flex align-items-center gap-2 fw-bold" href="index.html">
+        <span class="logo-mark" aria-hidden="true">PH</span>
+        Panther Hub
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+              aria-controls="mainNav" aria-expanded="false" aria-label="Open menu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav mx-auto gap-md-2">
+          <li class="nav-item"><a class="nav-link" href="index.html">Dashboard</a></li>
+          <li class="nav-item"><a class="nav-link" href="dining.html">Dining</a></li>
+          <li class="nav-item"><a class="nav-link active" aria-current="page" href="map.html">Campus Map</a></li>
+        </ul>
+        <button type="button" class="btn btn-outline-secondary icon-btn" id="themeToggle" aria-label="Toggle dark mode">
+          <i class="bi bi-moon" aria-hidden="true"></i>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main" class="container-xl py-4 flex-grow-1">
+
+    <div class="mb-4">
+      <h1 class="h2 fw-bold mb-1">Campus Map &amp; Study Spots</h1>
+      <p class="text-body-secondary mb-0">Find buildings, food and quiet places to study. Save your favorites to the Dashboard.</p>
+    </div>
+
+    <div class="row g-4">
+      <!-- Map column: comes FIRST on phones (order-1), moves right on desktop (order-lg-2) -->
+      <div class="col-12 col-lg-8 order-1 order-lg-2 d-flex flex-column gap-4">
+
+        <!-- ③ Leaflet map container: needs an explicit height (set in styles.css) -->
+        <div id="map" class="hub-map" role="region" aria-label="Interactive campus map"></div>
+
+        <!-- ④ Detail panel: filled by map.js when a pin or list item is selected -->
+        <section id="detailPanel" class="card hub-card" aria-labelledby="detailName" aria-live="polite">
+          <div class="card-body d-flex flex-wrap gap-3">
+            <div id="detailPhoto" class="detail-photo" aria-hidden="true"><i class="bi bi-geo-alt"></i></div>
+            <div class="flex-grow-1 d-flex flex-column gap-2">
+              <h2 id="detailName" class="h5 mb-0">Select a place</h2>
+              <p id="detailMeta" class="small text-body-secondary mb-0">Pick a pin on the map or a result in the list.</p>
+              <p id="detailDesc" class="mb-0"></p>
+              <div class="d-flex flex-wrap gap-2 mt-1">
+                <!-- Save spot: markup only; localStorage behavior arrives in FINAL 05 (PH-22) -->
+                <button type="button" id="saveSpot" class="btn btn-dark" aria-pressed="false" disabled>
+                  <i class="bi bi-star" aria-hidden="true"></i> Save spot
+                </button>
+                <!-- Directions: map.js points this at OpenStreetMap directions for the selected place -->
+                <a id="directions" class="btn btn-outline-dark disabled" aria-disabled="true" href="#" target="_blank" rel="noopener">
+                  Directions <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Sidebar: search, category chips, results list -->
+      <aside class="col-12 col-lg-4 order-2 order-lg-1" aria-label="Location search and list">
+
+        <!-- ① Search + category chips: markup in place; filtering is FINAL 04 (PH-21) -->
+        <div class="filter-bar mb-3">
+          <label for="placeSearch" class="form-label fw-semibold">Search places</label>
+          <input id="placeSearch" type="search" class="form-control mb-3" placeholder="e.g. library, quad">
+          <fieldset>
+            <legend class="form-label fw-semibold fs-6">Category</legend>
+            <div id="categoryChips" class="d-flex flex-wrap gap-2">
+              <!-- One chip per category; aria-pressed shows which one is active -->
+              <button type="button" class="chip" aria-pressed="true" data-category="All">All</button>
+              <button type="button" class="chip" aria-pressed="false" data-category="Dining">Dining</button>
+              <button type="button" class="chip" aria-pressed="false" data-category="Study">Study</button>
+              <button type="button" class="chip" aria-pressed="false" data-category="Academic">Academic</button>
+              <button type="button" class="chip" aria-pressed="false" data-category="Housing">Housing</button>
+              <button type="button" class="chip" aria-pressed="false" data-category="Athletics">Athletics</button>
+              <button type="button" class="chip" aria-pressed="false" data-category="Parking">Parking</button>
+            </div>
+          </fieldset>
+        </div>
+
+        <!-- ② Results list: each item is a real <button> so it works with Tab + Enter -->
+        <h2 class="h5">Results (<span id="resultCount">0</span>)</h2>
+        <ul id="placeList" class="list-unstyled d-flex flex-column gap-2 mb-0">
+          <li class="text-body-secondary">Loading places…</li>
+        </ul>
+      </aside>
+    </div>
+  </main>
+
+  <!-- ===== Shared footer ===== -->
+  <footer class="site-footer border-top py-3">
+    <div class="container-xl d-flex flex-wrap justify-content-between gap-2 small text-body-secondary">
+      <span>© <span class="js-year"></span> Panther Hub · student project, not an official LaGrange College site</span>
+      <span>Data: Open-Meteo · OpenStreetMap · posted dining hours</span>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Leaflet JS must load before map.js uses the global L object -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/map.js"></script>
+</body>
+</html>
