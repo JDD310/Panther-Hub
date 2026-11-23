@@ -1,0 +1,396 @@
+/* =====================================================================
+   Panther Hub — custom styles
+   Loaded after Bootstrap 5.3 so these rules can override its defaults.
+   Sections:
+     1. Theme variables (colors, spacing, radius)
+     2. Base + shared header/footer
+     3. Reusable components (cards, buttons, chips, badges)
+     4. Dashboard
+     5. Dining
+     6. Campus Map
+     7. Responsive rules (@media)
+   ===================================================================== */
+
+/* ---------- 1. Theme variables ----------
+   One place to change the look. Dark-mode values (FINAL 07) will
+   override these under [data-bs-theme="dark"]. */
+:root {
+  --ph-accent: #1d4ed8;        /* blue accent from the wireframes */
+  --ph-accent-contrast: #ffffff;
+  --ph-text: #1f1f1f;
+  --ph-muted: #595959;         /* 7:1 on white, passes WCAG AA */
+  --ph-border: #1f1f1f;
+  --ph-border-soft: #8c8c8c;
+  --ph-surface: #ffffff;
+  --ph-surface-alt: #f2f2f2;
+  --ph-open: #146c2e;          /* green, paired with the word OPEN */
+  --ph-closed: #9b1c1c;        /* red, paired with the word CLOSED */
+  --ph-radius: 12px;
+  --ph-radius-sm: 8px;
+  --ph-gap: 1rem;
+  --ph-touch: 44px;            /* minimum touch-target size */
+}
+
+/* Placeholder dark palette so the toggle has something to switch to later */
+[data-bs-theme="dark"] {
+  --ph-text: #f1f1f1;
+  --ph-muted: #b5b5b5;
+  --ph-border: #d0d0d0;
+  --ph-border-soft: #6b6b6b;
+  --ph-surface: #1b1b1f;
+  --ph-surface-alt: #2a2a30;
+  --ph-accent: #7aa2ff;
+  --ph-accent-contrast: #0b0b0b;
+}
+
+/* ---------- 2. Base + shared header/footer ---------- */
+body {
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  color: var(--ph-text);
+}
+
+/* Skip link becomes visible when focused with the keyboard */
+.skip-link {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  z-index: 2000;
+  padding: 0.5rem 1rem;
+  background: var(--ph-surface);
+  border: 2px solid var(--ph-border);
+  border-radius: var(--ph-radius-sm);
+}
+
+.site-header {
+  border-bottom: 2px solid var(--ph-border) !important;
+}
+
+/* Square logo placeholder until real branding lands (FINAL 09) */
+.logo-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 2px solid var(--ph-border);
+  border-radius: var(--ph-radius-sm);
+  font-size: 0.8rem;
+  font-weight: 800;
+}
+
+/* Nav links styled as outlined pills; the active page is filled */
+.navbar-nav .nav-link {
+  padding: 0.5rem 1.1rem !important;
+  border: 2px solid var(--ph-border);
+  border-radius: var(--ph-radius-sm);
+  font-weight: 600;
+  color: var(--ph-text);
+}
+.navbar-nav .nav-link.active {
+  background: var(--ph-border);
+  color: var(--ph-surface) !important;
+}
+.navbar-nav .nav-link:hover:not(.active) {
+  background: var(--ph-surface-alt);
+}
+
+.site-footer {
+  border-top: 2px solid var(--ph-border) !important;
+}
+
+/* ---------- 3. Reusable components ---------- */
+
+/* Square icon-only buttons meet the 44×44 px touch target */
+.icon-btn {
+  width: var(--ph-touch);
+  height: var(--ph-touch);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border-width: 2px;
+}
+
+/* Outlined card used across all pages */
+.hub-card {
+  border: 2px solid var(--ph-border);
+  border-radius: var(--ph-radius);
+}
+
+/* Dashed box for "interactive area" sections, matching the wireframe */
+.filter-bar,
+.hero-card {
+  padding: 1.25rem;
+  border: 2px dashed #6b6b6b;
+  border-radius: var(--ph-radius);
+}
+
+/* OPEN / CLOSED pill: color AND text, never color alone */
+.status-pill {
+  display: inline-block;
+  padding: 0.2rem 0.65rem;
+  border: 2px solid currentColor;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+.status-pill.is-open   { color: var(--ph-open); }
+.status-pill.is-closed { color: var(--ph-closed); }
+
+/* Category chips on the map page */
+.chip {
+  min-height: var(--ph-touch);
+  padding: 0 0.9rem;
+  border: 2px solid var(--ph-border);
+  border-radius: 999px;
+  background: var(--ph-surface);
+  color: var(--ph-text);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+.chip[aria-pressed="true"] {
+  background: var(--ph-border);
+  color: var(--ph-surface);
+}
+
+/* ---------- 4. Dashboard ---------- */
+.hero-card {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--ph-gap);
+}
+
+/* tabular-nums keeps the digits the same width so the clock doesn't jitter */
+.clock {
+  font-size: clamp(2rem, 5vw, 2.75rem);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.weather-now {
+  display: flex;
+  align-items: center;
+  gap: var(--ph-gap);
+}
+.weather-icon {
+  font-size: 3.5rem;
+  line-height: 1;
+  color: var(--ph-accent);
+}
+.weather-temp {
+  font-size: 2.75rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+/* 5 equal columns that stay in one row even on phones */
+.forecast {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+.forecast li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.5rem 0.25rem;
+  background: var(--ph-surface-alt);
+  border-radius: var(--ph-radius-sm);
+  font-size: 0.8rem;
+}
+.forecast .bi {
+  font-size: 1.25rem;
+}
+
+/* One row per dining location in the "Dining right now" card */
+.dining-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  border: 1px solid var(--ph-border-soft);
+  border-radius: var(--ph-radius-sm);
+}
+
+/* 2×2 quick-link grid */
+.quick-links {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+.quick-links a {
+  display: flex;
+  align-items: center;
+  min-height: var(--ph-touch);
+  padding: 0.75rem;
+  border: 1px solid var(--ph-border-soft);
+  border-radius: var(--ph-radius-sm);
+  color: var(--ph-text);
+  text-decoration: none;
+}
+.quick-links a:hover,
+.quick-links a:focus-visible {
+  background: var(--ph-surface-alt);
+}
+
+.saved-empty {
+  padding: 0.75rem;
+  background: var(--ph-surface-alt);
+  border-radius: var(--ph-radius-sm);
+  color: var(--ph-muted);
+}
+
+/* ---------- 5. Dining ---------- */
+.open-now-switch {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: calc(var(--ph-touch) - 6px);
+  margin: 0;
+}
+
+/* Photo area on each dining card; shows a placeholder until real photos exist */
+.card-photo {
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--ph-surface-alt);
+  border-radius: var(--ph-radius-sm);
+  color: var(--ph-muted);
+  font-size: 2.5rem;
+  overflow: hidden;
+}
+.card-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.countdown {
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.hub-table {
+  border: 2px solid var(--ph-border);
+  border-radius: var(--ph-radius);
+}
+.hub-table table {
+  min-width: 560px; /* forces sideways scroll on narrow phones instead of squishing */
+}
+.hub-table caption {
+  caption-side: top;
+}
+.hub-table th[scope="row"] {
+  white-space: nowrap;
+}
+
+/* ---------- 6. Campus Map ---------- */
+
+/* Leaflet draws nothing unless its container has a real height */
+.hub-map {
+  height: 560px;
+  border: 2px solid var(--ph-border);
+  border-radius: var(--ph-radius);
+  overflow: hidden;
+  z-index: 0; /* keeps the map below the Bootstrap navbar dropdown */
+}
+
+/* Numbered pins built with L.divIcon in map.js */
+.map-pin {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 2px solid #1f1f1f;
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  background: #ffffff;
+}
+.map-pin span {
+  transform: rotate(45deg);
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: #1f1f1f;
+}
+.map-pin.is-active {
+  background: #1f1f1f;
+}
+.map-pin.is-active span {
+  color: #ffffff;
+}
+
+/* Result list buttons */
+.place-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  border: 2px solid var(--ph-border);
+  border-radius: var(--ph-radius-sm);
+  background: var(--ph-surface);
+  color: var(--ph-text);
+  text-align: left;
+}
+.place-btn:hover,
+.place-btn[aria-current="true"] {
+  background: var(--ph-surface-alt);
+}
+.place-num {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--ph-border);
+  border-radius: 50%;
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+
+.detail-photo {
+  width: 180px;
+  height: 120px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--ph-surface-alt);
+  border-radius: var(--ph-radius-sm);
+  font-size: 2rem;
+  color: var(--ph-muted);
+}
+
+/* ---------- 7. Responsive rules ---------- */
+
+/* Phones: shorter map (matches the 300px mobile wireframe), smaller hero */
+@media (max-width: 575.98px) {
+  .hub-map {
+    height: 300px;
+  }
+  .detail-photo {
+    width: 100%;
+  }
+  .hero-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* Collapsed navbar: give stacked links some breathing room */
+@media (max-width: 767.98px) {
+  .navbar-nav {
+    gap: 0.5rem;
+    margin: 0.75rem 0;
+  }
+}
